@@ -11,13 +11,12 @@ import {
  client.config.configureEditorPanel([
   { name: "source", type: "element" },
   {
-    name: "Inputs",
+    name: "HTML",
     type: "column",
     source: "source",
     allowMultiple: true,
     allowedTypes: ['datetime', 'integer', 'text', 'boolean', 'number']
   },
-
  ]);
  
  
@@ -58,36 +57,11 @@ import {
     return (<div>Loading...</div>)
   }
 
-  // console.log('HTML: ',sigmaData[config.Inputs[1]][0]);
-  console.log(sigmaData[config.Inputs[0]][0]);
+  // console.log('HTML: ',sigmaData[config.HTML][0]);
 
   return (
     <>
-      <div className="card">
-        <div className="input-container" style={{ position: 'fixed', top: 0, left: 0 }}>
-          <input 
-            type="text" 
-            placeholder="Enter number" 
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                const newCount = parseInt(e.target.value, 10);
-                if (!isNaN(newCount)) {
-                  setCount(newCount);
-                  console.log(newCount);
-                }
-              }
-            }} 
-            style={{ 
-              position: 'absolute', 
-              top: 0, 
-              right: 0, 
-              opacity: 0.5 
-            }} 
-          />
-        </div>
-        <div dangerouslySetInnerHTML={{ __html: sigmaData[config.Inputs[1]][sigmaData[config.Inputs[0]][0]]}} />
-        {/* <div dangerouslySetInnerHTML={{ __html: data[0].html }} /> */}
-      </div>
+      <div dangerouslySetInnerHTML={{ __html: sigmaData[config.HTML][0]}} />
     </>
   )
 }
